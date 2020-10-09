@@ -1,7 +1,7 @@
-const express = require('express')
+const express = require('express');
+const { model } = require('../models/product');
 const router = express.Router()
 const modelProduct = require('../models/product')
-
 
 
 router.get('/', async(request, response) => {
@@ -65,7 +65,7 @@ router.get('/:_id', async(request, response) => {
 router.delete('/:_id', async(request, response) => {
     console.log("Delete one product")
     const { _id } = request.params
-    await modelProduct.findOneAndDelete()
+    await modelProduct.findOneAndDelete({ _id })
     .then((data) => {
         if(!data) {
             response.status(404).json({
@@ -86,7 +86,30 @@ router.delete('/:_id', async(request, response) => {
     console.log(request.params)
 })
 
-router.put('/:_id', (request, response) => {
+
+router.put('/:_id', async(request, response) => {
+    console.log("Update one product")
+    const { _id } = request.params
+    const { title, description, price } = request.body
+    const product = new modelProduct({ title: title, description: description, price: price })
+    await modelProduct.findByIdAndUpdate( _id, request.body, { useFindAndModify: false })
+    .then((data) => {
+        if(!data) {
+            response.status(404).json({
+                message: `Mise à jour échoué pour id=${_id}. Peut que cet article n'est pas trouvé.`
+            })
+        } else {
+            response.status(200).json({
+                message:"Mise à jour effectuée.",
+                data: data
+            })
+        }
+    })
+    .catch((error) => {
+        response.status(500).json({
+            message: error.message || `Erreur lors du mise à jour pour id = ${_id}`
+        })
+    })
     console.log(request.params)
 })
 
