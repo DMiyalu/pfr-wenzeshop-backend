@@ -39,19 +39,35 @@ router.post('/', async(request, response) => {
     })
 })
 
-router.get('/:id', (request, response) => {
-    console.log(request.params);
-    response.send("One Product")
+router.get('/:_id', async(request, response) => {
+    console.log("Get one product");
+    const { _id } = request.params
+    await modelProduct.findById(_id)
+    .then((data) => {
+        if(!data) {
+            response.status(404).json({
+                message: "Le produit n'a pas éta trouvé"
+            })
+        } else {
+            response.status(404).json({
+                message: "Success !",
+                data: data
+            })
+        }
+    })
+    .catch((error) => {
+        response.status(500).json({
+            message: error.message || "Une erreur est survenue lors de la demande"
+        })
+    })
 })
 
-router.delete('/:id', (request, response) => {
-    console.log(request.params);
-    response.send("Delete product")
+router.delete('/:_id', (request, response) => {
+    console.log(request.params)
 })
 
-router.put('/:id', (request, response) => {
-    console.log(request.params);
-    response.send("Update product")
+router.put('/:_id', (request, response) => {
+    console.log(request.params)
 })
 
 
