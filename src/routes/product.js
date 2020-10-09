@@ -14,7 +14,7 @@ router.get('/', async(request, response) => {
     })
     .catch((error) => {
         response.status(500).json({
-            message: error.message || "Une erreur est survenue lors de la demande"
+            message: error.message || "Une erreur est survenue lors de la demande."
         })
     })
 })
@@ -27,7 +27,7 @@ router.post('/', async(request, response) => {
     .then(data => {
         if(data) {
             response.json({
-                message: "Successfuly sent",
+                message: "Sauvegarde réussi! Le produit est maintenant present dans le stock.",
                 data: data
             })
         }
@@ -46,7 +46,7 @@ router.get('/:_id', async(request, response) => {
     .then((data) => {
         if(!data) {
             response.status(404).json({
-                message: "Le produit n'a pas éta trouvé"
+                message: "Recherche sans succès! Le produit n'a pas été trouvé."
             })
         } else {
             response.status(404).json({
@@ -62,7 +62,27 @@ router.get('/:_id', async(request, response) => {
     })
 })
 
-router.delete('/:_id', (request, response) => {
+router.delete('/:_id', async(request, response) => {
+    console.log("Delete one product")
+    const { _id } = request.params
+    await modelProduct.findOneAndDelete()
+    .then((data) => {
+        if(!data) {
+            response.status(404).json({
+                message: "Le produit à supprimer n'est pas trouvé."
+            })
+        } else {
+            response.status(200).json({
+                message: "Suppression réussie! Le produit n'existe plus dans le stock",
+                data: data
+            })
+        }
+    })
+    .catch((error) => {
+        response.status(500).json({
+            message: error.message || "Une erreur est survenue lors de la suppression du produit."
+        })
+    })
     console.log(request.params)
 })
 
