@@ -4,14 +4,25 @@ const modelProduct = require('../models/product')
 
 
 
-router.get('/', (request, response) => {
+router.get('/', async(request, response) => {
     console.log("Get all product.", request.params);
-    response.send("List of products")
+    await modelProduct.find()
+    .then((data) => {
+        if(data) {
+            response.status(200).json(data)
+        }
+    })
+    .catch((error) => {
+        response.status(500).json({
+            message: error.message || "Une erreur est survenue lors de la demande"
+        })
+    })
 })
 
 router.post('/', async(request, response) => {
     console.log("Post a product");
-    const product = new modelProduct({title: "sandwich", description: "a cake food", price: 3})
+    const { title, description, price } = request.body
+    const product = new modelProduct({title: title, description: description, price: price})
     await product.save()
     .then(data => {
         if(data) {
