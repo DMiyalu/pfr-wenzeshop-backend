@@ -1,3 +1,3 @@
 module.exports = {
-    MONGOURI : `mongodb+srv://client:bravoure0804@cluster0.tfe0w.mongodb.net/Wenzeshop?retryWrites=true&w=majority`,
+    MONGOURI : `mongodb+srv://dido:bravoure0804@aspiccluster.gkxq9.mongodb.net/wenzeshop?retryWrites=true&w=majority`,
 }
