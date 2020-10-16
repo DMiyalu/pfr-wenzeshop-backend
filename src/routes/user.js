@@ -3,26 +3,8 @@ const router = express.Router()
 const modelUser = require('../models/user')
 const jwt = require('jsonwebtoken')
 const configToUse = require('../../config/keys')
+const verifyToken = require('../../middlewares/verifyToken')
 
-
-
-function verifyToken(request, response, next) {
-    console.log('verifyToken start')
-    // Get auth header value
-    const bearerHeader = request.headers['authorization']
-    if(typeof bearerHeader !== 'undefined') {
-        // Split at the space
-        const bearer = bearerHeader.split(' ')
-        // Get token from array
-        const bearerToken = bearer[1]
-        // Set the token
-        request.token = bearerToken
-        next()
-    } else {
-        // FORBIDDEN
-        response.status(403)
-    }
-}
 
 
 router.get('/', async(request, response) => {
