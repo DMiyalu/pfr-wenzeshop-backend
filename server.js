@@ -4,8 +4,8 @@ const app = express()
 const cors = require('cors')
 const mongoose = require("mongoose")
 const bodyParser = require('body-parser')
-const product = require('./src/routes/product')
-const user = require('./src/routes/user')
+const product = require('./src/Product/product.router')
+const user = require('./src/User/user.router')
 const PORT = process.env.port || 8080
 
 
