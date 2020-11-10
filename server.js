@@ -7,8 +7,10 @@ const bodyParser = require('body-parser')
 const product = require('./src/Product/product.router')
 const user = require('./src/User/user.router')
 const marque = require('./src/Marque/marque.router')
+const adresse = require('./src/Adresse/adresse.router')
+const type_product = require('./src/TypeProduct/type_product.router')
+const commande = require('./src/Commande/commande.router')
 const PORT = process.env.port || 8080
-
 
 
 mongoose.connect(
@@ -35,6 +37,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/product', product)
 app.use('/user', user)
 app.use('/marque', marque)
+app.use('/adresse', adresse)
+app.use('/commande', commande)
+app.use('/type_product', type_product)
+
+
 
 //Routes
 app.get('/', (request, response) => {

@@ -30,8 +30,15 @@ router.post('/', verifyToken, (request, response) => {
             response.sendStatus(403)
         } else {
             console.log("Create user")
-            const { email, password } = request.body
-            const user = new modelUser({email: email, password: password})
+            const { email, password, nom, prenom, telephone, adresse } = request.body
+            const user = new modelUser({
+                email: email, 
+                password: password,
+                nom: nom,
+                prenom: prenom,
+                telephone: telephone,
+                adresse: adresse
+            })
             await user.save()
             .then(data => {
                 if(data) {
