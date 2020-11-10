@@ -6,6 +6,7 @@ const mongoose = require("mongoose")
 const bodyParser = require('body-parser')
 const product = require('./src/Product/product.router')
 const user = require('./src/User/user.router')
+const marque = require('./src/Marque/marque.router')
 const PORT = process.env.port || 8080
 
 
@@ -33,6 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/product', product)
 app.use('/user', user)
+app.use('/marque', marque)
 
 //Routes
 app.get('/', (request, response) => {
