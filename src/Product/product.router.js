@@ -20,8 +20,8 @@ router.get('/', async(request, response) => {
 
 router.post('/', async(request, response) => {
     console.log("Post a product");
-    const { title, description, price } = request.body
-    const product = new modelProduct({title: title, description: description, price: price})
+    const { title, description, price, marque, categorie, image } = request.body
+    const product = new modelProduct({title: title, description: description, price: price, marque: marque, categorie: categorie, image: image})
     await product.save()
     .then(data => {
         if(data) {
