@@ -8,7 +8,6 @@ const product = require('./src/Product/product.router')
 const user = require('./src/User/user.router')
 const adresse = require('./src/Adresse/adresse.router')
 const commande = require('./src/Commande/commande.router')
-const { response } = require('express')
 const PORT = process.env.port || 4000
 const HOST = '0.0.0.0'
 
