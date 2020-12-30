@@ -10,6 +10,7 @@ const adresse = require('./src/Adresse/adresse.router')
 const commande = require('./src/Commande/commande.router')
 const { response } = require('express')
 const PORT = process.env.port || 4000
+const HOST = '0.0.0.0'
 
 
 mongoose.connect(
@@ -41,6 +42,6 @@ app.use('/', (request, response) => {
   response.send('Welcome. Api_Wenzeshop.')
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
     console.log(`Server running on localhost:${PORT}`)
 })
