@@ -1,7 +1,7 @@
 module.exports = {
     production: {
-      dbURL: '',
-      jwtSecret: '',
+      dbURL: 'mongodb+srv://dido:bravoure0804@aspiccluster.gkxq9.mongodb.net/wenzeshop?retryWrites=true&w=majority',
+      jwtSecret: 'devjwtsecret',
       saltRound: '',
     },
     development: {
@@ -10,8 +10,8 @@ module.exports = {
       saltRound: '',
     },
     test: {
-      dbURL: '',
-      jwtSecret: '',
+      dbURL: 'mongodb+srv://dido:bravoure0804@aspiccluster.gkxq9.mongodb.net/wenzeshop?retryWrites=true&w=majority',
+      jwtSecret: 'devjwtsecret',
       saltRound: '',
     },
   };
