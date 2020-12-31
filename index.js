@@ -8,8 +8,8 @@ const product = require('./src/Product/product.router')
 const user = require('./src/User/user.router')
 const adresse = require('./src/Adresse/adresse.router')
 const commande = require('./src/Commande/commande.router')
-const PORT = process.env.PORT || 4000
 const HOST = '0.0.0.0'
+const PORT = process.env.PORT || 4000
 
 mongoose.connect(
     configToUse.dbURL,
